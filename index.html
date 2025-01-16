@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Script Proxy</title>
   <script>
-    // 使用 fetch 加载并执行 GitHub 上的 content.js
+    // 使用 fetch 加载来自不同仓库的 content.js
     fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
       .then(res => res.text())  // 获取纯文本的 JavaScript 内容
       .then(script => {
