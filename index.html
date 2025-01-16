@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Script Proxy</title>
   <script>
+    // 使用 fetch 加载并执行 GitHub 上的 content.js
     fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
-      .then(res => res.text())
+      .then(res => res.text())  // 获取纯文本的 JavaScript 内容
       .then(script => {
         const s = document.createElement('script');
-        s.textContent = script;
-        document.head.appendChild(s);
+        s.textContent = script;  // 将脚本内容添加到新创建的 <script> 元素中
+        document.head.appendChild(s);  // 将脚本插入到 <head> 中
         console.log('Script injected!');
       })
-      .catch(console.error);
+      .catch(console.error);  // 如果出现错误，输出错误信息
   </script>
 </head>
 <body>
   <h1>Script Proxy Page</h1>
 </body>
 </html>
-
