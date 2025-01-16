@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Proxy</title>
+  <script>
+    fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
+      .then(res => res.text())
+      .then(script => {
+        const s = document.createElement('script');
+        s.textContent = script;
+        document.head.appendChild(s);
+        console.log('Script injected!');
+      })
+      .catch(console.error);
+  </script>
+</head>
+<body>
+  <h1>Script Proxy Page</h1>
+</body>
+</html>
 
