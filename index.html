@@ -9,19 +9,14 @@
 
   <h1>加载并执行 GitHub 上的脚本</h1>
 
-  <button id="loadButton">加载脚本</button>
-
   <!-- 引用外部 JavaScript 文件 -->
   <script src="loadScript.js"></script>
-
+  
   <script>
-    // 等待 DOM 完全加载后再添加事件监听
-    document.addEventListener('DOMContentLoaded', function () {
-      // 在页面加载后，给按钮绑定事件，点击按钮加载脚本
-      document.getElementById('loadButton').addEventListener('click', function() {
-        loadGitHubScript();  // 调用 loadGitHubScript 函数
-      });
-    });
+    // 在页面加载完成后直接执行加载 GitHub 脚本
+    window.onload = function() {
+      loadGitHubScript();  // 调用 loadGitHubScript 函数
+    };
   </script>
 
 </body>
