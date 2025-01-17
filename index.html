@@ -3,39 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Pages Demo</title>
+  <title>Script Proxy</title>
+  <script>
+    // 使用 fetch 加载并执行 GitHub 上的 content.js
+    // 使用 fetch 加载来自不同仓库的 content.js
+    fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
+      .then(res => res.text())  // 获取纯文本的 JavaScript 内容
+      .then(script => {
+        const s = document.createElement('script');
+        s.textContent = script;  // 将脚本内容添加到新创建的 <script> 元素中
+        document.head.appendChild(s);  // 将脚本插入到 <head> 中
+        console.log('Script injected!');
+      })
+      .catch(console.error);  // 如果出现错误，输出错误信息
+  </script>
 </head>
 <body>
-  <button id="myButton">点击我</button>
-
-  <script>
-    // 获取按钮元素
-    const button = document.getElementById('myButton');
-
-    // 为按钮添加点击事件
-    button.addEventListener('click', function() {
-      // 提示用户正在等待
-      console.log("按钮被点击，等待5秒...");
-
-      // 设置5秒的延迟
-      setTimeout(function() {
-        console.log("5秒后执行的代码：Hello, World!");
-
-        // 向当前标签页注入脚本
-        fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
-          .then(response => response.text())
-          .then(script => {
-            console.log("正在执行从GitHub加载的脚本...");
-
-            // 创建并注入脚本元素
-            const scriptElement = document.createElement('script');
-            scriptElement.textContent = script;
-            document.head.appendChild(scriptElement);
-          })
-          .catch(error => console.error('加载脚本失败:', error));
-
-      }, 5000); // 5000毫秒 = 5秒
-    });
-  </script>
+  <h1>Script Proxy Page</h1>
 </body>
 </html>
