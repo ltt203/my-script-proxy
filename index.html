@@ -1,23 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>加载 GitHub 脚本</title>
+  <title>GitHub Pages Demo</title>
 </head>
 <body>
+  <button id="myButton">点击我</button>
 
-  <h1>加载并执行 GitHub 上的脚本</h1>
-
-  <!-- 引用外部 JavaScript 文件 -->
-  <script src="xunjian.js"></script>
-  
   <script>
-    // 在页面加载完成后直接执行加载 GitHub 脚本
-    window.onload = function() {
-      loadGitHubScript();  // 调用 loadGitHubScript 函数
-    };
-  </script>
+    // 获取按钮元素
+    const button = document.getElementById('myButton');
 
+    // 为按钮添加点击事件
+    button.addEventListener('click', function() {
+      // 提示用户正在等待
+      console.log("按钮被点击，等待5秒...");
+
+      // 设置5秒的延迟
+      setTimeout(function() {
+        console.log("5秒后执行的代码：Hello, World!");
+
+        // 向当前标签页注入脚本
+        fetch('https://raw.githubusercontent.com/ltt203/xunjian/main/content.js')
+          .then(response => response.text())
+          .then(script => {
+            console.log("正在执行从GitHub加载的脚本...");
+
+            // 创建并注入脚本元素
+            const scriptElement = document.createElement('script');
+            scriptElement.textContent = script;
+            document.head.appendChild(scriptElement);
+          })
+          .catch(error => console.error('加载脚本失败:', error));
+
+      }, 5000); // 5000毫秒 = 5秒
+    });
+  </script>
 </body>
 </html>
